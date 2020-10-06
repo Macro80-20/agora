@@ -3,21 +3,28 @@ import ReactDOM from "react-dom";
 import "./App.css";
 import { options, rtc } from "./constants";
 import AgoraRTC from "agora-rtc-sdk-ng";
+const config = {
+  appID: "364411bcaf3848f6abec44c2c9f17425",
+  channel: "agora call",
+  uid: null,
+  token:
+    "006364411bcaf3848f6abec44c2c9f17425IACVk+5gvxTAGMTVnPFc3T6TNWEHT4lgODz1WhCcDj3XDpmbMngAAAAAEAANYBkGoZJ9XwEAAQChkn1f",
+};
 
 function App() {
   async function handleSubmit(e) {
     try {
-      if (channelRef.current.value === "") {
-        return console.log("Please Enter Channel Name");
-      }
+      // if (channelRef.current.value === "") {
+      //   return console.log("Please Enter Channel Name");
+      // }
 
       setJoined(true);
 
       rtc.client = AgoraRTC.createClient({ mode: "rtc", codec: "h264" });
       const uid = await rtc.client.join(
-        options.appId,
-        channelRef.current.value,
-        options.token,
+        config.token,
+        config.channel,
+        config.uid,
         null
       );
 
